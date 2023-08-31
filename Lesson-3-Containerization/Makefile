@@ -41,4 +41,7 @@ benchmark-web-sum:
 profile:
 	python3 -m cProfile -s cumtime ./csvcli.py cvsops --file ext/input.csv --groupby last_name --applyname count --func npmedian | less
 
+build-image:
+	docker build -t canhnv/uda_devops_p4_l3 .
+
 all: install lint test
