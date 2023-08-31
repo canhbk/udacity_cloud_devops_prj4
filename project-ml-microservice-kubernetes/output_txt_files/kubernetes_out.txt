@@ -1,1 +1,91 @@
-<paste log output from Kubernetes-mediated prediction, here>
+canhnv@DESKTOP-B25E11O:~$ ssh vps7
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-105-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ * Introducing Expanded Security Maintenance for Applications.
+   Receive updates to over 25,000 software packages with your
+   Ubuntu Pro subscription. Free for personal use.
+
+     https://ubuntu.com/pro
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+  _____
+ / ___/___  _  _ _____ _   ___  ___
+| |   / _ \| \| |_   _/ \ | _ )/ _ \
+| |__| (_) | .` | | |/ _ \| _ \ (_) |
+ \____\___/|_|\_| |_/_/ \_|___/\___/
+
+Welcome!
+
+This server is hosted by Contabo. If you have any questions or need help,
+please don't hesitate to contact us at support@contabo.com.
+
+Last login: Fri Aug  4 06:00:51 2023 from ***
+github@vps7:~$ vi t.sh
+github@vps7:~$ sudo chmod +x t.sh
+github@vps7:~$ kubectl port-forward ml-api 8000:80
+Forwarding from 127.0.0.1:8000 -> 80
+Handling connection for 8000
+
+
+canhnv@DESKTOP-B25E11O:~$ ssh vps7
+Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-105-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ * Introducing Expanded Security Maintenance for Applications.
+   Receive updates to over 25,000 software packages with your
+   Ubuntu Pro subscription. Free for personal use.
+
+     https://ubuntu.com/pro
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+  _____
+ / ___/___  _  _ _____ _   ___  ___
+| |   / _ \| \| |_   _/ \ | _ )/ _ \
+| |__| (_) | .` | | |/ _ \| _ \ (_) |
+ \____\___/|_|\_| |_/_/ \_|___/\___/
+
+Welcome!
+
+This server is hosted by Contabo. If you have any questions or need help,
+please don't hesitate to contact us at support@contabo.com.
+
+Last login: Thu Aug 31 12:54:41 2023 from ***
+github@vps7:~$ ./t.sh
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
+github@vps7:~$ k logs ml-api
+k: command not found
+github@vps7:~$ kubectl logs ml-api
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 909-296-303
+[2023-08-31 04:56:03,266] INFO in app: JSON payload:
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2023-08-31 04:56:03,285] INFO in app: Inference payload DataFrame:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-08-31 04:56:03,295] INFO in app: Scaling Payload:
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-08-31 04:56:03,302] INFO in app: output.prediction: [20.35373177134412]
+127.0.0.1 - - [31/Aug/2023 04:56:03] "POST /predict HTTP/1.1" 200 -
+github@vps7:~$

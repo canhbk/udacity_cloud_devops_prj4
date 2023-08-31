@@ -4,9 +4,12 @@
 
 # Step 1:
 # Build image and add a descriptive tag
+docker build -t canhnv/uda_cloud_devops_p4 .
 
 # Step 2: 
 # List docker images
+docker image ls
 
 # Step 3: 
 # Run flask app
+docker run -p 8000:80 canhnv/uda_cloud_devops_p4
