@@ -1,3 +1,19 @@
+### LIST K8S POD ###
+(.devops) canhnv@DESKTOP-B25E11O:~/udacity_cloud_devops_prj4/project-ml-microservice-kubernetes$ kubectl get pod
+NAME                                             READY   STATUS    RESTARTS   AGE
+mongo-0                                          1/1     Running   0          5d2h
+mongo-1                                          1/1     Running   0          5d2h
+mongo-2                                          1/1     Running   0          5d2h
+nfs-subdir-external-provisioner-67479c98-d2jql   1/1     Running   0          5d4h
+nginx-deployment-7bd7747d8b-nvz26                1/1     Running   0          5d4h
+redis-0                                          1/1     Running   0          44h
+redis-1                                          1/1     Running   0          44h
+redis-2                                          1/1     Running   0          44h
+redis-commander-6fbdc9567c-tszhw                 1/1     Running   0          43h
+ml-api                                           1/1     Running   0          78m
+
+### PORT FORWARDING ###
+
 canhnv@DESKTOP-B25E11O:~$ ssh vps7
 Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-105-generic x86_64)
 
@@ -31,6 +47,7 @@ github@vps7:~$ kubectl port-forward ml-api 8000:80
 Forwarding from 127.0.0.1:8000 -> 80
 Handling connection for 8000
 
+### PREDICTION VALUE ###
 
 canhnv@DESKTOP-B25E11O:~$ ssh vps7
 Welcome to Ubuntu 20.04.5 LTS (GNU/Linux 5.4.0-105-generic x86_64)

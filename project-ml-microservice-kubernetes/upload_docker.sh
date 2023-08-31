@@ -10,6 +10,7 @@ dockerpath=canhnv/uda_cloud_devops_p4
 # Step 2:  
 # Authenticate & tag
 docker login -u canhnv
+docker tag ml-api $dockerpath:latest
 echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
